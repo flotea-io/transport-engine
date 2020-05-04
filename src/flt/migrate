@@ -1,0 +1,4 @@
+#!/bin/bash
+# run this as: ". /app/src/flt/migrate"
+
+cd /app/src/flt && bee migrate -driver=postgres -conn="postgres://flotea:Fckgw-Rhqq2@127.0.0.1:5432/flotea_platform?sslmode=disable"

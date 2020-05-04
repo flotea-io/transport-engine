@@ -1,0 +1,8 @@
+.vagrant
+bin
+src/github.com
+*.log
+pkg/
+/src/flt/flt
+/src/golang.org
+lastupdate.tmp

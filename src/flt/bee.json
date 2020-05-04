@@ -1,0 +1,7 @@
+{
+	"database": {
+		"driver": "postgres",
+		"conn": "postgres://flotea:Fckgw-Rhqq2@127.0.0.1:5432/flotea_platform?sslmode=disable"
+	},
+	"watch_ext": ["go","conf","html","css","js","tpl"]
+}

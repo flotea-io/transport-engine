@@ -1,0 +1,43 @@
+{
+  "name": "poi-creator",
+  "version": "1.0.0",
+  "description": "Poi creator and frontend for searching",
+  "author": "martin",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "element-ui": "^2.4.11",
+    "gulp": "^4.0.2",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "jgrowl": "^1.4.6",
+    "jquery": "^3.4.1",
+    "json-beautify": "^1.1.1",
+    "moment": "^2.24.0",
+    "node-sass": "^4.13.0",
+    "nuxt": "^2.0.0",
+    "nuxt-leaflet": "0.0.19",
+    "postcss-high-contrast": "^1.6.2",
+    "sass-loader": "^8.0.2",
+    "vue-codemirror": "^4.0.6",
+    "vue-full-calendar": "^2.7.0",
+    "web3": "^1.2.4",
+    "window": "^4.2.6"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^1.0.1",
+    "@nuxtjs/eslint-module": "^1.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^6.1.0",
+    "eslint-plugin-nuxt": ">=0.4.2",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "prettier": "^1.16.4"
+  }
+}

@@ -1,0 +1,436 @@
+[
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"components": [
+					{
+						"name": "fromLat",
+						"type": "bytes10"
+					},
+					{
+						"name": "fromLng",
+						"type": "bytes11"
+					},
+					{
+						"name": "toLat",
+						"type": "bytes10"
+					},
+					{
+						"name": "toLng",
+						"type": "bytes11"
+					}
+				],
+				"name": "_tripLoc",
+				"type": "tuple"
+			},
+			{
+				"name": "_price",
+				"type": "uint256"
+			},
+			{
+				"name": "_schedule",
+				"type": "bytes[]"
+			},
+			{
+				"name": "_places",
+				"type": "uint8"
+			},
+			{
+				"name": "_description",
+				"type": "bytes"
+			},
+			{
+				"name": "_routeType",
+				"type": "uint8"
+			},
+			{
+				"name": "_enabled",
+				"type": "bool"
+			}
+		],
+		"name": "createTrip",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "isNew",
+				"type": "bool"
+			},
+			{
+				"name": "_companyWallet",
+				"type": "address"
+			},
+			{
+				"name": "_company",
+				"type": "bytes32"
+			},
+			{
+				"name": "_web",
+				"type": "bytes32"
+			},
+			{
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "emitCarrier",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_tripId",
+				"type": "uint256"
+			},
+			{
+				"name": "_tickets",
+				"type": "uint256"
+			},
+			{
+				"name": "_buyerAddr",
+				"type": "address"
+			},
+			{
+				"name": "_price",
+				"type": "uint256"
+			},
+			{
+				"name": "_time",
+				"type": "uint256"
+			}
+		],
+		"name": "emitPurchasedTicket",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_tripId",
+				"type": "uint256"
+			},
+			{
+				"name": "_tickets",
+				"type": "uint256"
+			},
+			{
+				"name": "_buyerAddr",
+				"type": "address"
+			}
+		],
+		"name": "emitRefundedTickets",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_tripId",
+				"type": "uint256"
+			},
+			{
+				"name": "updateType",
+				"type": "string"
+			}
+		],
+		"name": "emitTripUpdateEvent",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_enabled",
+				"type": "bool"
+			}
+		],
+		"name": "setEnabled",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "_tokenAddress",
+				"type": "address"
+			},
+			{
+				"name": "_votingCarrierAddress",
+				"type": "address"
+			},
+			{
+				"name": "_carriersAddress",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "votingCarrier",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "carriers",
+				"type": "address"
+			}
+		],
+		"name": "TransportInitialized",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_companyWallet",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_company",
+				"type": "bytes32"
+			},
+			{
+				"indexed": false,
+				"name": "_web",
+				"type": "bytes32"
+			},
+			{
+				"indexed": false,
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "NewCarrier",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_companyWallet",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_company",
+				"type": "bytes32"
+			},
+			{
+				"indexed": false,
+				"name": "_web",
+				"type": "bytes32"
+			},
+			{
+				"indexed": false,
+				"name": "_index",
+				"type": "uint256"
+			}
+		],
+		"name": "CarrierUpdated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_trip",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_tripId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "_eventType",
+				"type": "string"
+			}
+		],
+		"name": "TripEvent",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_trip",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_tripId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "_tickets",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "_buyerAddr",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_price",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "_time",
+				"type": "uint256"
+			}
+		],
+		"name": "PurchasedTickets",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "_trip",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"name": "_tripId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "_tickets",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"name": "_buyerAddr",
+				"type": "address"
+			}
+		],
+		"name": "Refunded",
+		"type": "event"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getCarriers",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "tokenAddress",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "trips",
+		"outputs": [
+			{
+				"name": "addr",
+				"type": "address"
+			},
+			{
+				"name": "enabled",
+				"type": "bool"
+			},
+			{
+				"name": "exist",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "tripsId",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "tripsLength",
+		"outputs": [
+			{
+				"name": "length",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
