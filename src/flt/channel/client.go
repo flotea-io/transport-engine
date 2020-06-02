@@ -1,3 +1,9 @@
+/*
+* Project: FLOTEA - Decentralized passenger transport system
+* Copyright (c) 2020 Flotea, All Rights Reserved
+* For conditions of distribution and use, see copyright notice in LICENSE
+*/
+
 package channel
 
 import (
@@ -63,7 +69,7 @@ func (t *ChannelClient) CreateChannel(name string){
   ch, err := t.Conn.Channel()
   t.failOnError(err, "Failed to open a channel")
   t.Channel = ch
-  
+
   //defer ch.Close()
 }
 

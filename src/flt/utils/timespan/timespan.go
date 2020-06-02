@@ -1,3 +1,12 @@
+/*
+* Project: FLOTEA - Decentralized passenger transport system
+* Copyright (c) 2020 Flotea, All Rights Reserved
+* For conditions of distribution and use, see copyright notice in LICENSE
+*
+* Based on: fragments of FIWARE POI Data Provider, License Apache 2,
+* https://fiware-poidataprovider.readthedocs.io/en/master/index.html
+*/
+
 package utils
 
 import (

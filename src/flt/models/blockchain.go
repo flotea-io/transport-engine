@@ -1,3 +1,9 @@
+/*
+* Project: FLOTEA - Decentralized passenger transport system
+* Copyright (c) 2020 Flotea, All Rights Reserved
+* For conditions of distribution and use, see copyright notice in LICENSE
+*/
+
 package models
 
 import (
@@ -37,7 +43,7 @@ func GetLastBlock() (uint64, error){
 func UpdateLastBlock(newBlock uint64) (){
 	//return
 	o := orm.NewOrm()
-	blockchain := Blockchain{Id: 1}	
+	blockchain := Blockchain{Id: 1}
 	blockchain.Block = newBlock
 	if num, err := o.Update(&blockchain, "Block"); err == nil {
         _ = num
