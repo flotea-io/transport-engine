@@ -80,6 +80,8 @@ type RoutesStruct struct {
 	ToLat     float32 `orm:"column(to_lat);null"`
 	ToLng     float32 `orm:"column(to_lng);null"`
 
+	WheelchairAccessible bool `orm:"column(wheelchair_accessible);null"`
+
 	AgencyId   int    `orm:"column(agency_id);null;pk"`
 	AgencyName string `orm:"column(agency_name)"`
 	AgencyUrl  string `orm:"column(agency_url);null"`
@@ -122,7 +124,7 @@ func (c *SearchController) GetAll() {
 		sql += " AND ST_DWithin(to_geom, ST_MakePoint(" + sq.ToLng + "," + sq.ToLat + ")::geography, " + strconv.Itoa(sq.Radius) + ")"
 	}
 
-	sql = "SELECT gtfs_routes.route_id, route_desc, route_type, trip_wallet, places, " +
+	sql = "SELECT gtfs_routes.wheelchair_accessible, gtfs_routes.route_id, route_desc, route_type, trip_wallet, places, " +
 		"gtfs_routes.agency_id, agency_name, agency_url, price, currency_type, " +
 		"schedule, from_label, to_label, ST_Y(from_geom) as from_lat, ST_X(from_geom) as from_lng, ST_Y(to_geom) as to_lat, ST_X(to_geom) as to_lng " +
 		"FROM gtfs_routes LEFT JOIN gtfs_agency ON gtfs_routes.agency_id = gtfs_agency.agency_id " +

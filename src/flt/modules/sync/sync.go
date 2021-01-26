@@ -42,7 +42,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-var gTransportAddress = common.HexToAddress("0x0D2C2582F68f792E4f7c6b8045D5a9Ae70806526")
+var gTransportAddress = common.HexToAddress(beego.AppConfig.String("addrTransport"))
 var gTransportContractAbi abi.ABI
 var gTripContractAbi abi.ABI
 var gLastBlock uint64
@@ -144,7 +144,8 @@ func ClearData() {
 	var r orm.RawSeter
 	r = o.Raw("TRUNCATE gtfs_routes, gtfs_agency, gtfs_stops, gtfs_trips, gtfs_stop_times, routes_tickets RESTART IDENTITY CASCADE")
 	r.Exec()
-	r = o.Raw("UPDATE blockchain SET block = 15391784 WHERE id = 1")
+	//r = o.Raw("UPDATE blockchain SET block = 15391784 WHERE id = 1")
+	r = o.Raw("UPDATE blockchain SET block = " + beego.AppConfig.String("firstBlock") + " WHERE id = 1")
 	//r.Exec()
 	//r = o.Raw("UPDATE blockchain SET block = 14906201 WHERE id = 1")
 	r.Exec()
@@ -171,7 +172,7 @@ func subscribeEvents() {
 	fmt.Println("subscribeEvents")
 
 	query := ethereum.FilterQuery{
-		Addresses: []common.Address{gTransportAddress},
+		Addresses: []common.Address{gTransportAddress, common.HexToAddress(beego.AppConfig.String("addrCarriers"))},
 	}
 
 	logs := make(chan types.Log)
@@ -211,7 +212,7 @@ func getEvents() {
 
 	query := ethereum.FilterQuery{
 		FromBlock: new(big.Int).SetUint64(gLastBlock + 1),
-		Addresses: []common.Address{gTransportAddress},
+		Addresses: []common.Address{gTransportAddress, common.HexToAddress(beego.AppConfig.String("addrCarriers"))},
 	}
 
 	logs, err := gClient.FilterLogs(context.Background(), query)
@@ -230,7 +231,7 @@ func getEvents() {
 func loadRoute(tripAddress common.Address) string {
 	var requestBody = []byte(`{"jsonrpc":"2.0", "method":"eth_call", "params": [{"to": "` + tripAddress.String() + `", "data": "0x370158ea"}, "latest"], "id":1}`)
 
-	resp, err := http.Post("https://kovan.infura.io/v3/eabd1b929937436ea9a0529c3eae21c8", "application/json", bytes.NewBuffer(requestBody))
+	resp, err := http.Post(beego.AppConfig.String("infuraHttpsConnect"), "application/json", bytes.NewBuffer(requestBody))
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -303,7 +304,7 @@ func loadAndSaveRoute(tripAddress common.Address, tripId64 int64) {
 		}
 	}
 
-	fareId := models.AddGtfsFareAttributes(float64(hexToInt(arr[6]))/100, int(hexToInt(arr[1])))
+	fareId := models.AddGtfsFareAttributes(float64(hexToInt(arr[6]))/1000, int(hexToInt(arr[1])))
 	models.AddGtfsFareRules(int(fareId), int(tripId64))
 
 	// Stops
@@ -543,7 +544,7 @@ func getAddedTimeString(time []int, hours []int) string {
 }
 
 func getClient() *ethclient.Client {
-	client, err := ethclient.Dial("wss://kovan.infura.io/ws/v3/eabd1b929937436ea9a0529c3eae21c8")
+	client, err := ethclient.Dial(beego.AppConfig.String("infuraWssConnect"))
 	if err != nil {
 		fmt.Print(err)
 	}
