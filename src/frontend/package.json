@@ -20,7 +20,7 @@
     "jquery": "^3.4.1",
     "json-beautify": "^1.1.1",
     "moment": "^2.24.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "nuxt": "^2.0.0",
     "nuxt-leaflet": "0.0.19",
     "postcss-high-contrast": "^1.6.2",
